@@ -51,10 +51,13 @@ app.get('/api/userByEmail', async (req, res) => {
         const user = await UserModel.findOne({ loginEmail: email });
 
         if (!user) {
+            
             return res.status(404).send('User not found');
+
         }
         res.status(200).send(user);
     } catch (err) {
+        console.log(err)
         res.status(500).send('Internal Server Error');
     }
 });
