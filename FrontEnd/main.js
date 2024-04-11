@@ -8,7 +8,7 @@ const clientId = "HyXVNZdGh6hIf4xBSXqnMSjCxc6v4WVu"
 const configureClient = async () => {
     auth0Client = await createAuth0Client({
         domain: domain,
-        clientId:  clientId
+        clientId: clientId
     });
 };
 
@@ -35,7 +35,7 @@ const login = async () => {
 
 try {
     // On Window load check if user is logged in
-    window.onload = async () => {
+    window.onload = window.onpageshow = async () => {
         await configureClient();
         const isAuthenticated = await auth0Client.isAuthenticated();
 
@@ -63,6 +63,7 @@ try {
 } catch (err) {
     alert("Something went wrong");
 }
+
 
 
 // Function that updates the UI after a change
