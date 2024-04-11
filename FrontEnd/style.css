@@ -1,0 +1,53 @@
+@import "bulma/css/bulma.css";
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  
+}
+
+
+.surveySection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.surveySection .myContainer {
+  max-width: 900px;
+  margin: 2rem;
+  border: .2rem solid white;
+  padding: 2rem;
+  border-radius: 2rem;
+  background-color: #0e210d;
+}
+
+.removeButton {
+  margin-top: 10px;
+}
+
+.form-section {
+  padding: 20px;
+}
+.form-label {
+  font-size: 20px;
+}
+.form-input {
+  font-size: 18px;
+}
+.tag {
+  margin-right: 5px;
+}
+
+.hidden {
+  display: none;
+}

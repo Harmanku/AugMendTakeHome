@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AugMend TakeHome</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <button id="btn-logout" class="button is-danger" onclick="logout()">
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section id="surveySection" class="surveySection">
+      <div class="myContainer">
+        <h1 class="title">User Survey</h1>
+        <form id="surveyForm">
+          <div class="field">
+            <label class="label" for="name">Name</label>
+            <div class="control">
+              <input class="input" type="text" id="name" name="name" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="control">
+              <input
+                class="input"
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="age">Age</label>
+            <div class="control">
+              <input class="input" type="number" id="age" name="age" required />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="maritalStatus">Marital Status</label>
+            <div class="control">
+              <div class="select">
+                <select
+                  id="maritalStatus"
+                  name="maritalStatus"
+                  onchange="toggleOtherStatus(this)"
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="single">Single</option>
+                  <option value="married">Married</option>
+                  <option value="widowed">Widowed</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="otherStatus" class="field" style="display: none">
+            <label class="label" for="otherStatusInput"
+              >Other Marital Status</label
+            >
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="otherStatusInput"
+                name="otherMaritalStatus"
+                placeholder="Please specify"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="therapist"
+              >Have you ever seen a therapist for mental health issues?</label
+            >
+            <div class="control">
+              <div class="select">
+                <select id="therapist" name="therapist" required>
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="medications"
+              >Are you taking any medications?</label
+            >
+            <div class="control">
+              <div class="select">
+                <select
+                  id="medications"
+                  name="medications"
+                  onchange="toggleMedicationDetails(this)"
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="medicationDetails" style="display: none"></div>
+          <div
+            id="addMedicationButton"
+            class="field"
+            style="display: none; margin-top: 20px"
+          >
+            <div class="control">
+              <button
+                class="button is-info"
+                type="button"
+                onclick="addMedicationField()"
+              >
+                Add Another Medication
+              </button>
+            </div>
+          </div>
+          <div class="field" style="margin-top: 20px">
+            <div class="control">
+              <button id="submitButton" class="button is-primary" type="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section id="userInfoSection" class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="card form-section">
+              <div class="card-content">
+                <h1 class="title has-text-centered">Form</h1>
+                <div class="field">
+                  <label class="label form-label">Name</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="text"
+                      id="nameInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label form-label">Email</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="email"
+                      id="emailInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label form-label">Age</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="number"
+                      id="ageInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label form-label">Marital Status</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="text"
+                      id="maritalStatusInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div id="otherMaritalStatusField" class="field">
+                  <label class="label form-label">Other Marital Status</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="text"
+                      id="otherMaritalStatusInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label form-label">Therapist</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="text"
+                      id="therapistInput"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label form-label">Takes Medications</label>
+                  <div class="control">
+                    <input
+                      class="input form-input"
+                      type="text"
+                      id="medicationsReadOnly"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label id="medicationsLabel" class="label form-label"
+                    >Medications</label
+                  >
+                  <div class="control">
+                    <div id="medicationsTags"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="/main.js"></script>
+    <script>
+      function toggleMedicationDetails(select) {
+        const medicationDetails = document.getElementById("medicationDetails");
+        const addMedicationButton = document.getElementById(
+          "addMedicationButton"
+        );
+        if (select.value === "yes") {
+          medicationDetails.style.display = "block";
+          addMedicationButton.style.display = "block";
+          addMedicationField();
+        } else {
+          medicationDetails.innerHTML = "";
+          medicationDetails.style.display = "none";
+          addMedicationButton.style.display = "none";
+        }
+      }
+
+      function toggleOtherStatus(select) {
+        const otherStatusInput = document.getElementById("otherStatus");
+        if (select.value === "other") {
+          otherStatusInput.style.display = "block";
+          otherStatusInput
+            .querySelector("input")
+            .setAttribute("required", true);
+        } else {
+          const input = document.getElementById("otherStatusInput");
+          input.value = "";
+          otherStatusInput.style.display = "none";
+          otherStatusInput.querySelector("input").removeAttribute("required");
+        }
+      }
+
+      function addMedicationField() {
+        const medicationDetails = document.getElementById("medicationDetails");
+        const newField = document.createElement("div");
+        newField.classList.add("field", "medication");
+        newField.innerHTML = `
+          <div class="control">
+            <input class="input" type="text" name="medicationName[]" placeholder="Medication Name" required>
+          </div>
+          <div class="control">
+            <button class="button is-danger is-small removeButton" type="button" onclick="removeMedicationField(this)">Remove</button>
+          </div>
+        `;
+        medicationDetails.appendChild(newField);
+      }
+
+      function removeMedicationField(button) {
+        const field = button.closest(".field.medication");
+        field.remove();
+        if (document.getElementsByClassName("removeButton").length === 0) {
+          const medicationDetails =
+            document.getElementById("medicationDetails");
+          medicationDetails.style.display = "none";
+          addMedicationButton.style.display = "none";
+          const selectElement = document.getElementById("medications");
+          selectElement.value = "no";
+        }
+      }
+    </script>
+  </body>
+</html>
