@@ -136,7 +136,11 @@ const submitForm = async (event) => {
 
         // Now let's try submitting
         try {
-            const response = await fetch('http://localhost:3000/api/surveySubmit', {
+            //Use for production
+
+            //const response = await fetch('http://localhost:3000/api/surveySubmit', {    
+            const response = await fetch('https://augmendtakehome.onrender.com/api/surveySubmit', {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -168,7 +172,11 @@ function validateForm() {
 // Logic to get the user's information based on the email they used for login. This will be unique.
 const getUserByEmail = async (email) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/userByEmail?email=${email}`);
+        // Use for production
+        // const response = await fetch(`http://localhost:3000/api/userByEmail?email=${email}`);
+
+
+        const response = await fetch(`https://augmendtakehome.onrender.com/api/userByEmail?email=${email}`);
         if (!response.ok) {
             throw new Error('User not found');
         }
@@ -176,8 +184,7 @@ const getUserByEmail = async (email) => {
 
         return user
     } catch (error) {
-        //Can add better error display here
-        alert("Something went Wrong");
+        //Don't need to display errors because we can except there to not be a registered user yet
         return
     }
 };

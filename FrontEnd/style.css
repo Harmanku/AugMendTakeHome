@@ -25,10 +25,8 @@ body {
 .surveySection .myContainer {
   max-width: 900px;
   margin: 2rem;
-  border: .2rem solid white;
   padding: 2rem;
   border-radius: 2rem;
-  background-color: #0e210d;
 }
 
 .removeButton {
@@ -41,11 +39,17 @@ body {
 .form-label {
   font-size: 20px;
 }
+
+
+.form-input-small {
+  margin-left: 50px;
+}
 .form-input {
   font-size: 18px;
 }
 .tag {
   margin-right: 5px;
+  margin-top: 7px
 }
 
 .hidden {
